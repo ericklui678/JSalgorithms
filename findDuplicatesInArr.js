@@ -13,9 +13,13 @@ Output: [2,3]
 // 2) Check whether arr[idx] is positive
   // 2a) If arr[idx] is positive, set arr[idx] to negative
   // 2b) Else push arr[i] to result array
+
 // Time Complexity: O(n)
-// Space Complexity: O(1)
+// Space Complexity: O(1) excluding
 const findDupInArr = (arr) => {
+  if (!arr) return null;
+  if (!Array.isArray(arr)) return `Entered ${typeof arr}. Input must be array type`
+
   let result = [];
   for (let i = 0; i < arr.length; i++) {
     let idx = Math.abs(arr[i]) - 1;

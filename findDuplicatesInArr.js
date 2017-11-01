@@ -15,7 +15,8 @@ Output: [2,3]
   // 2b) Else push arr[i] to result array
 
 // Time Complexity: O(n)
-// Space Complexity: O(1) excluding
+// Space Complexity: O(1) excluding the array you are returning
+
 const findDupInArr = (arr) => {
   if (!arr) return null;
   if (!Array.isArray(arr)) return `Entered ${typeof arr}. Input must be array type`
@@ -30,7 +31,10 @@ const findDupInArr = (arr) => {
     }
   }
   return result;
-}
+};
+
+const arr = [4,3,2,7,8,2,3,1];
+console.log(findDupInArr(arr));
 
 // 1) Create dictionary to keep track of num occurances
 // 2) Step through dictionary and push keys that have values greater than 1
@@ -51,6 +55,3 @@ const findDupInArr = (arr) => {
 //   }
 //   return res;
 // };
-
-const arr = [4,3,2,7,8,2,3,1];
-console.log(findDupInArr(arr));

@@ -1,3 +1,12 @@
+/*
+Given an array of numbers, find whether any two elements within the array is equal to sum k
+
+Time Complexity: O(n)
+  - Only iterated through array with for loop based on arr length n
+Space Complexity: O(n)
+  - Additional dictionary used to keep track of iterated array elements
+*/
+
 const sumTwoElementsInArr = (arr, k) => {
   let numMap = {};
 

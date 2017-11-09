@@ -7,6 +7,8 @@
 
 4) Now recursively call quicksort for those left and right subarrays until subarrays only have 1 element
 
+Time Complexity: O(n log n) and worst case O(n^2)
+Space Complexity: O(1)
 *** Further explanation of n log n https://www.youtube.com/watch?v=kjDR1NBB9MU
 */
 

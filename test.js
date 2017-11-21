@@ -1,30 +1,41 @@
-function mergeSort(arr) {
-  if (arr.length < 2) return arr;
+(function () {
+  // var a = b = 3;
+  b = 3;
+  var a = b;
+}) ();
 
-  let middle = Math.floor(arr.length/2);
-  let left = arr.slice(0, middle);
-  let right = arr.slice(middle, arr.length);
+console.log(typeof a !== 'undefined');
+console.log(typeof b !== 'undefined');
 
-  return merge(mergeSort(left), mergeSort(right));
-}
+// function mergeSort(arr) {
+//   if (arr.length < 2) return arr;
+//
+//   let middle = Math.floor(arr.length/2);
+//   let left = arr.slice(0, middle);
+//   let right = arr.slice(middle, arr.length);
+//
+//   return merge(mergeSort(left), mergeSort(right));
+// }
+//
+// function merge(left, right) {
+//   let result = [];
+//   console.log(left, right);
+//   while (left.length && right.length) {
+//     if (left[0] <=right[0]) {
+//       result.push(left.shift());
+//     } else {
+//       result.push(right.shift());
+//     }
+//   }
+//   while (left.length) result.push(left.shift());
+//   while (right.length) result.push(right.shift());
+//   return result;
+// }
+//
+// const arr = [3,2,5,10,1,4,6];
+// console.log(mergeSort(arr));
 
-function merge(left, right) {
-  let result = [];
-  console.log(left, right);
-  while (left.length && right.length) {
-    if (left[0] <=right[0]) {
-      result.push(left.shift());
-    } else {
-      result.push(right.shift());
-    }
-  }
-  while (left.length) result.push(left.shift());
-  while (right.length) result.push(right.shift());
-  return result;
-}
 
-const arr = [3,2,5,10,1,4,6];
-console.log(mergeSort(arr));
 // const map = {
 //   'asdlfkj': 3,
 //   'ssalkfnan': 0,

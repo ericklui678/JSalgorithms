@@ -25,7 +25,9 @@ class workShift {
       let timeSlot = this.intervals[i];
       let currStart = timeSlot[0];
       let currEnd = timeSlot[1];
-      // Case 3: timeSlot already within another timeSlot
+
+      let nextSlot = this.intervals[i+1];
+      // // Case 3: timeSlot already within another timeSlot
       if (this.inRange(start, end, timeSlot)) {
         console.log(`${start}-${end}: already within`, timeSlot);
         return;
@@ -46,6 +48,18 @@ class workShift {
       if (this.inRange(start, start, timeSlot) && end > currEnd) {
         console.log(`${start}-${end}: starts during shift and ends later`);
         this.intervals[i] = [currStart, end];
+        return;
+      }
+      // Case 7: If timeSlots have no overlaps and comes before current timeSlot, insert // before
+      if (end < currStart) {
+        console.log(`${start}-${end}: inserting before`, timeSlot);
+        this.intervals.splice(i, 0, [start, end]);
+        return;
+      }
+      // Case 8: If timeSlot comes after current timeSlot, insert after
+      if (start > currEnd && (!nextSlot || end < nextSlot[0])) {
+        console.log(`${start}-${end}: inserting after`, timeSlot);
+        this.intervals.splice(i+1, 0, [start, end]);
         return;
       }
     }
@@ -79,3 +93,15 @@ newShift.display();
 
 newShift.add(2, 6) // Case 6
 newShift.display();
+
+newShift.add(10, 12);
+newShift.display();
+//
+newShift.add(8, 9);
+newShift.display();
+//
+// newShift.add(3, 4);
+// newShift.display();
+
+// newShift.add(0, 8);
+// newShift.display();

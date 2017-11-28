@@ -21,6 +21,7 @@ const findWords = arr => {
   };
   let words = [];
 
+  // look through each word in arr
   for (let word of arr) {
     let skipWord = false;
     let firstChar = word[0].toUpperCase();

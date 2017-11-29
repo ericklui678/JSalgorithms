@@ -14,12 +14,9 @@ class SLL {
 
   addToBack(val) {
     let node = new Node(val);
-    console.log('what is head', this.head);
 
     if (!this.head) {
-      console.log('setting head', this);
       this.head = node;
-      console.log('after set', this);
     } else {
       let curr = this.head;
       while (curr.next) {
@@ -77,38 +74,30 @@ class SLL {
     }
     console.log();
   }
+
+  getLength(curr = this.head, length = 0) {
+    while (curr) {
+      length++;
+      curr = curr.next
+    }
+    return length;
+  }
+
+  checkPalindrome(start = this.head, length = this.getLength()) {
+    if (length < 0) return true;
+    let end = start;
+    for (let i = 0; i < length-1; i++) {
+      end = end.next;
+    }
+    console.log(start.val, end.val, length);
+    if (start.val !== end.val) return false;
+    return this.checkPalindrome(start.next, length - 2);
+  }
 }
 
-function addTwoSLL(s1, s2, s3 = new SLL()) {
-  console.log(s1, s2);
-  // console.log(s1.val, s2.val);
-  // console.log(s3);
-  if (!s1 && !s2) return s3;
-  if (s1 && s2) {
-    console.log('condition 1');
-    console.log(s1.next, s2.next);
-    s3.addToBack(s1.val + s2.val);
-    addTwoSLL(s1.next, s2.next);
-  }
-  else if (!s1 && s2) {
-    console.log('condition 2');
-    s3.addToBack(s2.val);
-    addTwoSLL(s1, s2.next);
-  }
-  else if (s1 && !s2) {
-    console.log('condition 3');
-    s3.addToBack(s1.val);
-    addTwoSLL(s1.next, s2);
-  }
-  return s3;
-}
 
 let s1 = new SLL();
-s1.addToBack(5).addToBack(10).addToBack(15).display();
+s1.addToBack(1).addToBack(2).addToBack(10).addToBack(3).addToBack(1).display();
+console.log(s1.checkPalindrome());
 
-let s2 = new SLL();
-s2.addToBack(10).addToBack(20).addToBack(30).display();
-
-console.log();
-let myObj = addTwoSLL(s1.head, s2.head);
-console.log(util.inspect(myObj, false, null));
+// console.log(util.inspect(myObj, false, null));

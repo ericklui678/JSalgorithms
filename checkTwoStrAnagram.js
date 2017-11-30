@@ -5,24 +5,7 @@ Given two strings, check if a string is an anagram of the other string
 */
 
 const checkAnagramOf = (str1, str2) => {
-  // using Maps
-
-  // const letterMap = new Map();
-  //
-  // for (let char of str1) {
-  //   letterMap.set(char, letterMap.get(char) + 1 || 1);
-  // }
-  //
-  // for (let char of str2) {
-  //   if (!letterMap.has(char)) return false;
-  //
-  //   let charVal = letterMap.get(char);
-  //   if (charVal === 1) letterMap.delete(char);
-  //   else letterMap.set(char, charVal - 1);
-  // }
-  // return !letterMap.size;
-
-  // using Dictionaries
+  if (str1.length !== str2.length) return false;
   const dict = {};
 
   for (let char of str1) {

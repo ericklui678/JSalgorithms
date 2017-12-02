@@ -1,10 +1,11 @@
 // Implementing a stack using SLL with head and tail
 const SLNode = require('./SLNode');
 
-module.exports = class Queue {
+class Queue {
   constructor() {
     this.head = null;
     this.tail = null;
+    this.length = 0;
   }
   front() {
     return this.head ? this.head.val : null;
@@ -21,25 +22,18 @@ module.exports = class Queue {
     }
     return false;
   }
-  size() {
-    let count = 0;
-    let curr = this.head;
-    while (curr) {
-      count++;
-      curr = curr.next;
-    }
-    return count;
-  }
   enqueue(val) {
     let node = new SLNode(val);
 
     if (!this.head) {
       this.head = this.tail = node;
-      return;
+    } else {
+      let curr = this.head;
+      while (curr.next) curr = curr.next;
+      this.tail = curr.next = node;
     }
-    let curr = this.head;
-    while (curr.next) curr = curr.next;
-    this.tail = curr.next = node;
+    this.length++;
+    return node;
   }
   dequeue() {
     if (!this.head) return null;
@@ -51,6 +45,27 @@ module.exports = class Queue {
       this.head = this.head.next;
       removedNode.next = null;
     }
+    this.length--;
     return removedNode;
   }
+  display() {
+    let str = `head -> `;
+    if (this.head) {
+      let curr = this.head;
+      while (curr) {
+        if (!curr.next) str += `${curr.val} `;
+        else str += `${curr.val} -> `;
+        curr = curr.next;
+      }
+    }
+    str += `<- tail`
+    console.log(str);
+  }
 }
+
+let q1 = new Queue();
+q1.enqueue(1);
+q1.enqueue(2);
+q1.enqueue(3);
+q1.enqueue(4);
+q1.display();

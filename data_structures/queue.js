@@ -1,7 +1,7 @@
 // Implementing a stack using SLL with head and tail
 const SLNode = require('./SLNode');
 
-class Queue {
+module.exports = class Queue {
   constructor() {
     this.head = null;
     this.tail = null;
@@ -62,10 +62,3 @@ class Queue {
     console.log(str);
   }
 }
-
-let q1 = new Queue();
-q1.enqueue(1);
-q1.enqueue(2);
-q1.enqueue(3);
-q1.enqueue(4);
-q1.display();

@@ -22,7 +22,7 @@ module.exports = class Queue {
     }
     return false;
   }
-  enqueue(val) {
+  push(val) {
     let node = new SLNode(val);
 
     if (!this.head) {
@@ -33,9 +33,9 @@ module.exports = class Queue {
       this.tail = curr.next = node;
     }
     this.length++;
-    return node;
+    return node.val;
   }
-  dequeue() {
+  shift() {
     if (!this.head) return null;
 
     let removedNode = this.head;
@@ -46,7 +46,7 @@ module.exports = class Queue {
       removedNode.next = null;
     }
     this.length--;
-    return removedNode;
+    return removedNode.val;
   }
   display() {
     let str = `head -> `;

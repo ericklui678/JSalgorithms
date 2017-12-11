@@ -41,20 +41,27 @@ function removeButton() {
 
 /* 4 ---------------------------------------------------
 var theThing = null;
-var cnt = 0; // helps us to differentiate the leaked objects in the debugger
-var replaceThing = function() {
-    var originalThing = theThing;
-    var unused = function() {
-        if (originalThing) // originalThing is used in the closure and hence ends up in the lexical environment shared by all closures in that scope
-            console.log("hi");
-        };
-        // originalThing = null; // <- nulling originalThing here tells V8 gc to collect it
-        theThing = {
-            longStr: (++cnt) + '_' + (new Array(1000000).join('*')),
-            someMethod: function() { // if not nulled, original thing is now attached to someMethod -> <function scope> -> Closure
-                console.log(someMessage);
-            }
-        };
-    };
+var replaceThing = function () {
+  var originalThing = theThing;
+  // Define a closure that references originalThing but doesn't ever actually
+  // get called. But because this closure exists, originalThing will be in the
+  // lexical environment for all closures defined in replaceThing, instead of
+  // being optimized out of it. If you remove this function, there is no leak.
+  var unused = function () {
+    if (originalThing)
+      console.log("hi");
+  };
+  theThing = {
+    longStr: new Array(1000000).join('*'),
+    // While originalThing is theoretically accessible by this function, it
+    // obviously doesn't use it. But because originalThing is part of the
+    // lexical environment, someMethod will hold a reference to originalThing,
+    // and so even though we are replacing theThing with something that has no
+    // effective way to reference the old value of theThing, the old value
+    // will never get cleaned up!
+    someMethod: function () {}
+  };
+  // If you add `originalThing = null` here, there is no leak.
+};
 setInterval(replaceThing, 1000);
 */

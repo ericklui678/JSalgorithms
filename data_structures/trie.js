@@ -15,7 +15,7 @@ class Trie {
   insert(word) {
     if (typeof word !== 'string') {
       console.log(`Cannot insert ${word}. Word must be string typed`);
-      return;
+      return false;
     }
     let curr = this.root;
     for (let letter of word) {
@@ -26,10 +26,21 @@ class Trie {
     }
     curr.isCompleteWord = true;
   }
+  find(word) {
+    if (typeof word !== 'string') {
+      console.log(`Cannot find ${word}. Word must be string typed`);
+      return false;
+    }
+    let curr = this.root;
+    for (let letter of word) {
+      if (curr.children[letter]) {
+        curr = curr.children[letter];
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
-let t1 = new Trie();
-t1.insert('hell');
-t1.insert('hello');
-t1.insert('hey');
-console.log(util.inspect(t1.root.children, false, null));
+module.exports = Trie;

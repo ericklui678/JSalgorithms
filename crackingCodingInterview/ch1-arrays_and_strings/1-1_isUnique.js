@@ -1,6 +1,9 @@
 // Implement an algorithm to determine if a string has all unique characters.
 // What if you cannot use additional data structures?
 
+// Method 1: Using dictionary
+// Time: O(n)
+// Space: O(n)
 const isUnique = (str) => {
   let dict = {};
   for (let char of str) {
@@ -11,8 +14,9 @@ const isUnique = (str) => {
   return true;
 };
 
-// Implementation without data structures
-// Nested for loop to check char with rest of chars
+// Method 2: Nested for loop
+// Time: O(n^2)
+// Space: O(1)
 const isUniqueNoDS = (str) => {
   for (let i = 0; i < str.length; i++) {
     for (let j = i+1; j < str.length; j++) {
@@ -22,4 +26,6 @@ const isUniqueNoDS = (str) => {
   return true;
 };
 
-console.log(isUniqueNoDS('helo'));
+const str = 'hello';
+console.log(isUnique(str));
+console.log(isUniqueNoDS(str));

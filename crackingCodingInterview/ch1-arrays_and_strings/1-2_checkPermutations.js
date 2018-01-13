@@ -1,6 +1,9 @@
 // Given two strings, write a method to decide if one is a permutation
 // of the other
 
+// Method 1: Use dictionary
+// Time: O(n)
+// Space: O(n)
 const checkPermutations = (str1, str2)  => {
   let dict = {};
   // create dict from str1 to count letter occurances

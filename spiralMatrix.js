@@ -20,39 +20,48 @@ const spiralMatrix = (matrix) => {
     for (let i = minCol; i < maxCol; i++) {
       console.log(matrix[minRow][i]);
       count--;
-      if (!count) return;
     }
     minRow++;
 
     for (let i = minRow; i < maxRow; i++) {
       console.log(matrix[i][maxCol - 1]);
       count--;
-      if (!count) return;
     }
     maxCol--;
 
     for (let i = maxCol - 1; i >= minCol; i--) {
       console.log(matrix[maxRow - 1][i]);
       count--
-      if (!count) return;
     }
     maxRow--;
 
     for (let i = maxRow - 1; i >= minRow; i--) {
       console.log(matrix[i][minCol]);
       count--;
-      if (!count) return;
     }
     minCol++;
   }
 };
 
 
-const matrix = [
+const matrix1 = [
   [1,2,3,4],
   [5,6,7,8],
   [9,10,11,12],
   [13,14,15,16]
 ];
 
-spiralMatrix(matrix);
+const matrix2 = [
+  [1,2],
+  [3,4],
+  [5,6],
+  [7,8]
+];
+
+const matrix3 = [
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+];
+
+spiralMatrix(matrix3);

@@ -12,7 +12,7 @@ class SLL {
     this.head = null;
   }
 
-  addToBack(val) {
+  add(val) {
     let node = new Node(val);
 
     if (!this.head) {
@@ -20,7 +20,6 @@ class SLL {
     } else {
       let curr = this.head;
       while (curr.next) {
-        // console.log('inside while');
         curr = curr.next;
       }
       curr.next = node;
@@ -83,21 +82,41 @@ class SLL {
     return length;
   }
 
-  checkPalindrome(start = this.head, length = this.getLength()) {
+  isPalindrome(start = this.head, length = this.getLength()) {
     if (length < 0) return true;
     let end = start;
     for (let i = 0; i < length-1; i++) {
       end = end.next;
     }
-    console.log(start.val, end.val, length);
     if (start.val !== end.val) return false;
-    return this.checkPalindrome(start.next, length - 2);
+    return this.isPalindrome(start.next, length - 2);
   }
 }
 
+function sumTwoSLL(head1, head2, sll3 = new SLL()) {
+  if (!head1 && !head2) return sll3;
+  if (head1 && !head2) {
+    sll3.add(head1.val);
+    sumTwoSLL(head1.next, head2, sll3);
+  }
+  if (!head1 && head2) {
+    sll3.add(head2.val);
+    sumTwoSLL(head1, head2.next, sll3);
+  }
+  if (head1 && head2) {
+    sll3.add(head1.val + head2.val);
+    sumTwoSLL(head1.next, head2.next, sll3);
+  }
+  return sll3;
+}
 
 let s1 = new SLL();
-s1.addToBack(1).addToBack(2).addToBack(10).addToBack(3).addToBack(1).display();
-console.log(s1.checkPalindrome());
+s1.add(1).add(2).display();
+
+let s2 = new SLL();
+s2.add(4).display();
+
+let sll3 = sumTwoSLL(s1.head, s2.head);
+sll3.display();
 
 // console.log(util.inspect(myObj, false, null));

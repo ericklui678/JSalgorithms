@@ -2,7 +2,7 @@ const Queue = require('./queue');
 
 class BinaryTree {
   constructor(val) {
-    this.root = val;
+    this.val = val;
     this.left = null;
     this.right = null;
   }
@@ -32,12 +32,12 @@ class BinaryTree {
   inOrder(curr = this) {
     if (!curr) return;
     this.inOrder(curr.left);
-    console.log(curr.root);
+    console.log(curr.val);
     this.inOrder(curr.right);
   }
   preOrder(curr = this) {
     if (!curr) return;
-    console.log(curr.root);
+    console.log(curr.val);
     this.preOrder(curr.left);
     this.preOrder(curr.right);
   }
@@ -45,16 +45,42 @@ class BinaryTree {
     if (!curr) return;
     this.postOrder(curr.left);
     this.postOrder(curr.right);
-    console.log(curr.root);
+    console.log(curr.val);
+  }
+  reverse(root = this) {
+    if (!root) return null;
+    let temp = root.left;
+    root.left = this.reverse(root.right);
+    root.right = this.reverse(temp);
+    return root;
+  }
+  sumLeftLeaves(root = this) {
+    let sum = 0;
+
+    const findLeftLeaves = (root) => {
+      if (!root) return;
+      if (root.left && !root.left.left && !root.left.right) {
+        sum += root.left.val;
+      }
+      findLeftLeaves(root.left);
+      findLeftLeaves(root.right);
+    }
+    findLeftLeaves(root);
+    return sum;
   }
 }
 
-let t1 = new BinaryTree(5);
-t1.insert(4);
-t1.insert(3);
+let t1 = new BinaryTree(4);
 t1.insert(2);
+t1.insert(7);
 t1.insert(1);
+t1.insert(3);
+t1.insert(6);
+t1.insert(9);
 
-t1.inOrder();
+// t1.inOrder();
+
+// t1.inOrder();
+console.log(t1.sumLeftLeaves());
 // t1.preOrder();
 // t1.postOrder();

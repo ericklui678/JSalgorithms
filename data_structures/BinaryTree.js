@@ -78,9 +78,14 @@ t1.insert(3);
 t1.insert(6);
 t1.insert(9);
 
-// t1.inOrder();
+/*
+Average Levels
 
-// t1.inOrder();
-console.log(t1.sumLeftLeaves());
-// t1.preOrder();
-// t1.postOrder();
+if (!root) return;
+    counts[level] = counts[level] || { sum: 0, nodes: 0 };
+    counts[level].sum += root.val;
+    counts[level].nodes++;
+    averageOfLevels(root.left, level + 1, counts);
+    averageOfLevels(root.right, level + 1, counts);
+    return counts.map(count => count.sum / count.nodes);
+*/

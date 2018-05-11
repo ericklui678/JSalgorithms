@@ -16,13 +16,16 @@ const rotateArrayInPlace = (arr, k) => {
   arr.reverse();
   // reverse first half
   for (let i = 0; i < Math.floor(k/2); i++) {
-    [arr[i], arr[k - i - 1]] = [arr[k - i - 1], arr[i]];
+    let lastIdx = k - i - 1;
+    [arr[i], arr[lastIdx]] = [arr[lastIdx], arr[i]];
   }
   // reverse second half
-  for (let i = arr.length - 1; i >= Math.floor(k/2); i--) {
-    console.log(i);
+  for (let i = 0; i < Math.floor((arr.length - k)/2); i++) {
+    let firstIdx = i + k;
+    let lastIdx = arr.length - i - 1;
+    [[arr[firstIdx]], [arr[lastIdx]]] = [[arr[lastIdx]], [arr[firstIdx]]];
   }
-  console.log(arr);
+  return arr;
 };
 
 /*
@@ -42,7 +45,7 @@ const rotateArrayWithSpace = (arr, k) => {
 };
 
 let arr = [1,2,3,4,5,6];
-let k = 4;
+let k = 5;
 
 let newArr = rotateArrayInPlace(arr, k);
 console.log(newArr);

@@ -18,3 +18,4 @@ const findKNumInArr = (arr, k) => {
 const arr = [1,5,2,3,1,10];
 const k = [11,12,1];
 console.log(findKNumInArr(arr, k));
+console.log(20/6);

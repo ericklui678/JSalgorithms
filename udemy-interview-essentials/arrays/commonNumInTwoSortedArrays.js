@@ -38,7 +38,7 @@ function commonNumInTwoSortedArray(arr1, arr2) {
   let i = 0;
   let j = 0;
   let common = [];
-  while (typeof arr1[i] !== "undefined" && typeof arr2[j] !== "undefined") {
+  while (i < arr1.length && j < arr2.length) {
     console.log(i, j);
     if (arr1[i] === arr2[j]) {
       common.push(arr1[i]);
@@ -88,4 +88,4 @@ const b2 = [0, 1, 2, 3, 4, 5, 8, 9, 10, 12, 14, 15]; // -> [1,2,9,10,12]
 const c1 = [0, 1, 2, 3, 4, 5];
 const c2 = [6, 7, 8, 9, 10, 11]; // -> []
 
-console.log(commonNumInTwoSortedArray(c1, c2));
+console.log(commonNumInTwoSortedArray(a1, a2));
